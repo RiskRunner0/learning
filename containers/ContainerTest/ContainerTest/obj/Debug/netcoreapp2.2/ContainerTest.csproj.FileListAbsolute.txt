@@ -1,0 +1,14 @@
+C:\repos\learning\containers\ContainerTest\ContainerTest\bin\Debug\netcoreapp2.2\ContainerTest.deps.json
+C:\repos\learning\containers\ContainerTest\ContainerTest\bin\Debug\netcoreapp2.2\ContainerTest.runtimeconfig.json
+C:\repos\learning\containers\ContainerTest\ContainerTest\bin\Debug\netcoreapp2.2\ContainerTest.runtimeconfig.dev.json
+C:\repos\learning\containers\ContainerTest\ContainerTest\bin\Debug\netcoreapp2.2\ContainerTest.dll
+C:\repos\learning\containers\ContainerTest\ContainerTest\bin\Debug\netcoreapp2.2\ContainerTest.pdb
+C:\repos\learning\containers\ContainerTest\ContainerTest\obj\Debug\netcoreapp2.2\ContainerTest.csprojAssemblyReference.cache
+C:\repos\learning\containers\ContainerTest\ContainerTest\obj\Debug\netcoreapp2.2\ContainerTest.csproj.CoreCompileInputs.cache
+C:\repos\learning\containers\ContainerTest\ContainerTest\obj\Debug\netcoreapp2.2\ContainerTest.RazorAssemblyInfo.cache
+C:\repos\learning\containers\ContainerTest\ContainerTest\obj\Debug\netcoreapp2.2\ContainerTest.RazorAssemblyInfo.cs
+C:\repos\learning\containers\ContainerTest\ContainerTest\obj\Debug\netcoreapp2.2\ContainerTest.AssemblyInfoInputs.cache
+C:\repos\learning\containers\ContainerTest\ContainerTest\obj\Debug\netcoreapp2.2\ContainerTest.AssemblyInfo.cs
+C:\repos\learning\containers\ContainerTest\ContainerTest\obj\Debug\netcoreapp2.2\ContainerTest.RazorTargetAssemblyInfo.cache
+C:\repos\learning\containers\ContainerTest\ContainerTest\obj\Debug\netcoreapp2.2\ContainerTest.dll
+C:\repos\learning\containers\ContainerTest\ContainerTest\obj\Debug\netcoreapp2.2\ContainerTest.pdb
