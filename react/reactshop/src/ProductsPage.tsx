@@ -1,37 +1,35 @@
 import * as React from "react";
-import { IProduct, products } from "./ProductsData";
+import { IProduct } from "./ProductsData";
 import { Link } from "react-router-dom";
 import { RouteComponentProps } from "react-router-dom";
 import "url-search-params-polyfill";
+import { connect } from "react-redux";
+import { IApplicationState } from "./Store";
+import { getProducts } from "./ProductsActions";
 
-interface IState {
+interface IProps extends RouteComponentProps {
+  getProducts: typeof getProducts;
+  loading: boolean;
   products: IProduct[];
-  search: string;
 }
 
-class ProductsPage extends React.Component<RouteComponentProps, IState> {
-  public constructor(props: RouteComponentProps) {
-    super(props);
-    this.state = {
-      products: [],
-      search: "",
-    };
-  }
-
+class ProductsPage extends React.Component<IProps> {
   public render() {
+    const serachParams = new URLSearchParams(this.props.location.search);
+    const search = serachParams.get("search") || "";
     return (
       <div className="page-container">
         <p>
           Welcome to React Shop where you can get all your tools for ReactJS!
         </p>
         <ul className="product-list">
-          {this.state.products.map((product) => {
+          {this.props.products.map((product) => {
             if (
-              !this.state.search ||
-              (this.state.search &&
+              !search ||
+              (search &&
                 product.name
                   .toLowerCase()
-                  .indexOf(this.state.search.toLowerCase()) > -1)
+                  .indexOf(search.toLowerCase()) > -1)
             ) {
               return (
                 <li key={product.id} className="product-list-item">
@@ -47,21 +45,8 @@ class ProductsPage extends React.Component<RouteComponentProps, IState> {
     );
   }
 
-  public componentDidMount() {
-    this.setState({ products });
-  }
-
-  public static getDerivedStateFromProps(
-    props: RouteComponentProps,
-    state: IState
-  ) {
-    console.log(props.location.search);
-    const searchParams = new URLSearchParams(props.location.search);
-    const search = searchParams.get("search") || "";
-    return {
-      products: state.products,
-      search,
-    };
+  public async componentDidMount() {
+    this.props.getProducts();
   }
 }
 
