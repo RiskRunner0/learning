@@ -1,35 +1,60 @@
 import * as React from "react";
-import { IProduct } from "./ProductsData";
-import { Link } from "react-router-dom";
 import { RouteComponentProps } from "react-router-dom";
-import "url-search-params-polyfill";
-import { connect } from "react-redux";
-import { IApplicationState } from "./Store";
-import { getProducts } from "./ProductsActions";
+import { Link } from "react-router-dom";
+import { IProduct, products } from "./ProductsData";
 
-interface IProps extends RouteComponentProps {
-  getProducts: typeof getProducts;
-  loading: boolean;
+import "url-search-params-polyfill";
+
+interface IState {
   products: IProduct[];
+  search: string;
 }
 
-class ProductsPage extends React.Component<IProps> {
+class ProductsPage extends React.Component<RouteComponentProps, IState> {
+  public static getDerivedStateFromProps(
+    props: RouteComponentProps,
+    state: IState
+  ) {
+    const searchParams = new URLSearchParams(props.location.search);
+    const search = searchParams.get("search") || "";
+    return {
+      products: state.products,
+      search
+    };
+  }
+
+  public constructor(props: RouteComponentProps) {
+    super(props);
+    this.state = {
+      products: [],
+      search: ""
+    };
+  }
+
+  public componentDidMount() {
+    this.setState({ products });
+  }
+
+  // public componentDidMount() {
+  //   const searchParams = new URLSearchParams(this.props.location.search);
+  //   const search = searchParams.get("search") || "";
+  //   this.setState({ products, search });
+  // }
+
   public render() {
-    const serachParams = new URLSearchParams(this.props.location.search);
-    const search = serachParams.get("search") || "";
     return (
       <div className="page-container">
         <p>
           Welcome to React Shop where you can get all your tools for ReactJS!
         </p>
         <ul className="product-list">
-          {this.props.products.map((product) => {
+          {this.state.products.map(product => {
             if (
-              !search ||
-              (search &&
+              !this.state.search ||
+              (this.state.search &&
                 product.name
                   .toLowerCase()
-                  .indexOf(search.toLowerCase()) > -1)
+                  .indexOf(this.state.search.toLowerCase()) > -1)
             ) {
               return (
                 <li key={product.id} className="product-list-item">
@@ -43,10 +68,6 @@ class ProductsPage extends React.Component<IProps> {
         </ul>
       </div>
     );
-  }
-
-  public async componentDidMount() {
-    this.props.getProducts();
   }
 }
 

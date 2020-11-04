@@ -7,30 +7,26 @@ import {
 
 const initialProductState: IProductsState = {
   products: [],
-  productsLoading: false,
+  productsLoading: false
 };
 
 export const productsReducer: Reducer<IProductsState, ProductsActions> = (
   state = initialProductState,
   action
 ) => {
-  switch (
-    action.type
-  ) {
-      case ProductsActionTypes.LOADING: {
-          return {
-              ...state,
-              productsLoading: true
-          };
-      }
-      case ProductsActionTypes.GETALL: {
-          return {
-              ...state, 
-              products: action.products,
-              productsLoading: false
-          }
-      }
+  switch (action.type) {
+    case ProductsActionTypes.LOADING: {
+      return {
+        ...state,
+        productsLoading: true
+      };
+    }
+    case ProductsActionTypes.GETALL: {
+      return {
+        ...state,
+        products: action.products,
+        productsLoading: false
+      };
+    }
   }
-
-  return state;
-};
+}

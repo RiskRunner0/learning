@@ -4,14 +4,14 @@ import { productsReducer } from "./ProductsReducer";
 import { IProductsState } from "./ProductsTypes";
 
 export interface IApplicationState {
-    products: IProductsState
+  products: IProductsState;
 }
 
 const rootReducer = combineReducers<IApplicationState>({
-    products: productsReducer
-})
+  products: productsReducer,
+});
 
 export default function configureStore(): Store<IApplicationState> {
-    const store = createStore(rootReducer, undefined, applyMiddleware(thunk));
-    return store;
+  const store = createStore(rootReducer, undefined, applyMiddleware(thunk));
+  return store;
 }
