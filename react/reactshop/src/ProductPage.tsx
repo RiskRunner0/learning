@@ -12,6 +12,8 @@ interface IState {
 }
 
 class ProductPage extends React.Component<Props, IState> {
+
+  private componentUnloaded: boolean = false;
   public constructor(props: Props) {
     super(props);
     this.state = {
@@ -19,8 +21,6 @@ class ProductPage extends React.Component<Props, IState> {
       loading: true
     };
   }
-
-  private componentUnloaded: boolean = false;
 
   public async componentDidMount() {
     if (this.props.match.params.id) {
