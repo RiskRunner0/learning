@@ -9,12 +9,51 @@ interface IProps {
   onAddToBasket: () => void;
 }
 
-const Product: React.FC<IProps> = props => {
+interface ILikeState {
+  likes: number;
+  lastLike: Date | null;
+}
+
+const initialLikeState: ILikeState = {
+  likes: 0,
+  lastLike: null
+};
+
+enum LikeActionTypes {
+  LIKE = "LIKE",
+}
+
+interface ILikeAction {
+  type: LikeActionTypes.LIKE;
+  now: Date | null;
+}
+
+type LikeActions = ILikeAction;
+
+const reducer = (state: ILikeState = initialLikeState, action: LikeActions) => {
+  switch (action.type) {
+    case LikeActionTypes.LIKE: {
+      return { ...state, likes: state.likes + 1, lastLike: action.now };
+    }
+  }
+};
+
+const Product: React.FunctionComponent<IProps> = (props) => {
+  const [{likes, lastLike}, dispatch]: [
+    ILikeState,
+    (action: ILikeAction) => void
+  ] = React.useReducer(reducer, initialLikeState);
+
   const product = props.product;
 
   const handleAddClick = () => {
     props.onAddToBasket();
   };
+
+  const handleLikeClick = () => {
+    dispatch({ type: LikeActionTypes.LIKE, now: new Date() });
+  };
+
   if (!product) {
     return null;
   }
@@ -33,7 +72,7 @@ const Product: React.FC<IProps> = props => {
         </Tabs.Tab>
         <Tabs.Tab name="Reviews" heading={() => "Reviews"}>
           <ul className="product-reviews">
-            {product.reviews.map(review => (
+            {product.reviews.map((review) => (
               <li key={review.reviewer}>
                 <i>"{review.comment}"</i> - {review.reviewer}
               </li>
@@ -45,12 +84,20 @@ const Product: React.FC<IProps> = props => {
       <p className="product-price">
         {new Intl.NumberFormat("en-US", {
           currency: "USD",
-          style: "currency"
+          style: "currency",
         }).format(product.price)}
       </p>
       {!props.inBasket && (
         <button onClick={handleAddClick}>Add to basket</button>
       )}
+      <div className="like-container">
+        {likes > 0 && (
+          <div>{`I like this x ${likes}, last at ${lastLike}`}</div>
+        )}
+        <button onClick={handleLikeClick}>
+          {likes > 0 ? "Like again" : "Like"}
+        </button>
+      </div>
     </React.Fragment>
   );
 };

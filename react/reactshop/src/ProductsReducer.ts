@@ -6,8 +6,9 @@ import {
 } from "./ProductsTypes";
 
 const initialProductState: IProductsState = {
+  currentProduct: null,
   products: [],
-  productsLoading: false
+  productsLoading: false,
 };
 
 export const productsReducer: Reducer<IProductsState, ProductsActions> = (
@@ -18,15 +19,25 @@ export const productsReducer: Reducer<IProductsState, ProductsActions> = (
     case ProductsActionTypes.LOADING: {
       return {
         ...state,
-        productsLoading: true
+        productsLoading: true,
       };
     }
     case ProductsActionTypes.GETALL: {
       return {
         ...state,
         products: action.products,
-        productsLoading: false
+        productsLoading: false,
       };
     }
+    case ProductsActionTypes.GETSINGLE: {
+      return {
+        ...state,
+        currentProduct: action.product,
+        productsLoading: false,
+      };
+    }
+    default: {
+      return { ...state };
+    }
   }
-}
+};

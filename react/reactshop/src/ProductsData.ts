@@ -10,6 +10,11 @@ export interface IProduct {
   reviews: IReview[];
 }
 
+export const getProducts = async () : Promise<IProduct[]> => {
+  await wait(1000);
+  return products;
+};
+
 export const products: IProduct[] = [
   {
     description:
