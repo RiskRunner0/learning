@@ -5,8 +5,8 @@ ref: https://www.learncpp.com/
 - [X] Chapter 0: Getting Started
 - [X] Chapter 1: Basics
 - [X] Chapter 2: Basics: Functions and Files
-- [ ] Chapter 3: Debugging C++ Programs
-- [ ] Chapter 4: Fundamental Data Types
+- [x] Chapter 3: Debugging C++ Programs
+- [X] Chapter 4: Fundamental Data Types
 - [ ] Chapter 5: Operators
 - [ ] Optional Chapter: Bit Manipulation
 - [ ] Chapter 6: Scope, Duration, and Linkage

@@ -5,10 +5,12 @@
 
 int main()
 {
-    int x = 5.5;
+    constexpr double gravity { 9.8 };
+    constexpr int sum { 4 + 5 };
+    int age{};
+    std::cin >> age;
 
-    std::cout << "Hello World!" << ' ' << x;
-    return 0;
+    constexpr int myAge { 20 };
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
