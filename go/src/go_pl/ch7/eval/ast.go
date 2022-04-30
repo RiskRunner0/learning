@@ -1,3 +1,6 @@
+// Copyright © 2016 Alan A. A. Donovan & Brian W. Kernighan.
+// License: https://creativecommons.org/licenses/by-nc-sa/4.0/
+
 package eval
 
 // An Expr is an arithmetic expression.
@@ -33,3 +36,5 @@ type call struct {
 	fn   string // one of "pow", "sin", "sqrt"
 	args []Expr
 }
+
+//!-ast
