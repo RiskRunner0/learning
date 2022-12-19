@@ -1,5 +1,5 @@
 CFLAGS = -std=c++17 -O2
-LDFLAGS = -lglfw -lvulkan -ldl -lpthread -lX11 -lXxf86vm -lXrandr -lXi -DNDEBUG
+LDFLAGS = -lglfw -lvulkan -ldl -lpthread -lX11 -lXxf86vm -lXrandr -lXi -DNDEBUG -g
 
 HelloTriangle: main.cpp
 	g++ $(CFLAGS) -o HelloTriangle main.cpp $(LDFLAGS)
